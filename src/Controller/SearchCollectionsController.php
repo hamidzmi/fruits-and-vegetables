@@ -21,7 +21,6 @@ class SearchCollectionsController extends AbstractController
     public function __invoke(Request $request, string $type): JsonResponse
     {
         try {
-            // Convert the type to a ProductType value object
             $productType = ProductType::from($type);
 
             // Create a ProductFilterDto from query parameters
@@ -31,7 +30,6 @@ class SearchCollectionsController extends AbstractController
                 $request->query->getInt('maxWeight')
             );
 
-            // Execute the use case with the filters
             $result = $this->queryCollectionsUseCase->execute($productType, $filterDto);
 
             return new JsonResponse($result, JsonResponse::HTTP_OK);
