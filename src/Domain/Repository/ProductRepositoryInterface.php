@@ -2,15 +2,18 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Dto\ProductFilter;
+use App\Domain\Dto\ProductFilterDto;
 use App\Domain\Entity\Collection\ProductCollection;
 use App\Domain\Entity\Product;
 use App\Domain\ValueObject\ProductType;
 
 interface ProductRepositoryInterface
 {
-    public function saveCollection(ProductCollection $collection): void;
-    public function findByExternalId(int $value): ?Product;
+    public function saveCollection(ProductCollection $collection, ProductType $type): void;
 
-    public function findByTypeAndFilter(ProductType $type, ProductFilter $filter): array;
+    /**
+     * @param ProductType $type
+     * @return Product[]
+     */
+    public function findByType(ProductType $type): array;
 }

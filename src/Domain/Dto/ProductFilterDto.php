@@ -2,7 +2,7 @@
 
 namespace App\Domain\Dto;
 
-class ProductFilter
+class ProductFilterDto
 {
     private ?string $name;
     private ?int $minWeight;
@@ -32,6 +32,6 @@ class ProductFilter
 
     public function hasFilters(): bool
     {
-        return $this->name !== null || $this->minWeight !== null || $this->maxWeight !== null;
+        return $this->name !== null || !empty($this->minWeight) || !empty($this->maxWeight);
     }
 }

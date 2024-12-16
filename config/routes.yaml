@@ -5,3 +5,18 @@ controllers:
 kernel:
     resource: ../src/Kernel.php
     type: annotation
+
+process_request:
+    path: /api/process
+    controller: App\Controller\ProcessController
+    methods: POST
+
+search_collections:
+    path: /api/{type}/search
+    controller: App\Controller\SearchCollectionsController
+    methods: GET
+
+add_item_to_collection:
+    path: /api/{type}/add
+    controller: App\Controller\AddItemToCollectionController
+    methods: POST

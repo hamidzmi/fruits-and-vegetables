@@ -5,10 +5,10 @@ namespace App\Entity;
 use App\Domain\Entity\Product as DomainProduct;
 use App\Domain\ValueObject\ProductType;
 use App\Domain\ValueObject\Weight;
-use App\Repository\ProductRepository;
+use App\Repository\SQLiteCollectionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[ORM\Entity(repositoryClass: SQLiteCollectionRepository::class)]
 class Product
 {
     #[ORM\Id]

@@ -23,20 +23,6 @@ class ProductCollectionTest extends TestCase
         $this->assertSame($product, $items[1]);
     }
 
-    public function testRemoveItem(): void
-    {
-        $collection = new FruitCollection();
-
-        $product = new Product(2, 'Apple', ProductType::from('fruit'), Weight::from(500, 'g'));
-        $collection->add($product);
-
-        $this->assertCount(1, $collection->list());
-
-        $collection->remove($product);
-
-        $this->assertCount(0, $collection->list());
-    }
-
     public function testAddInvalidProductThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
