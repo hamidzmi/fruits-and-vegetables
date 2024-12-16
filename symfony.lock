@@ -8,6 +8,51 @@
             "ref": "64d8583af5ea57b7afa4aba4b159907f3a148b05"
         }
     },
+    "doctrine/cache": {
+        "version": "2.2.0"
+    },
+    "doctrine/collections": {
+        "version": "2.2.2"
+    },
+    "doctrine/common": {
+        "version": "3.4.5"
+    },
+    "doctrine/dbal": {
+        "version": "3.9.3"
+    },
+    "doctrine/deprecations": {
+        "version": "1.1.4"
+    },
+    "doctrine/doctrine-bundle": {
+        "version": "2.11",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.4",
+            "ref": "91690c0a440faba1a3676256bcca2b4aa9f55b72"
+        },
+        "files": [
+            "config/packages/doctrine.yaml",
+            "src/Entity/.gitignore",
+            "src/Repository/.gitignore"
+        ]
+    },
+    "doctrine/doctrine-migrations-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.1",
+            "ref": "1d01ec03c6ecbd67c3375c5478c9a423ae5d6a33"
+        },
+        "files": [
+            "config/packages/doctrine_migrations.yaml",
+            "migrations/.gitignore"
+        ]
+    },
+    "doctrine/event-manager": {
+        "version": "2.0.1"
+    },
     "doctrine/inflector": {
         "version": "2.0.4"
     },
@@ -16,6 +61,24 @@
     },
     "doctrine/lexer": {
         "version": "1.2.3"
+    },
+    "doctrine/migrations": {
+        "version": "3.5.5"
+    },
+    "doctrine/orm": {
+        "version": "2.14.3"
+    },
+    "doctrine/persistence": {
+        "version": "3.4.0"
+    },
+    "doctrine/sql-formatter": {
+        "version": "1.5.1"
+    },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.18"
+    },
+    "laminas/laminas-code": {
+        "version": "4.16.0"
     },
     "myclabs/deep-copy": {
         "version": "1.11.0"
@@ -175,6 +238,9 @@
     "symfony/deprecation-contracts": {
         "version": "v3.0.1"
     },
+    "symfony/doctrine-bridge": {
+        "version": "v6.0.19"
+    },
     "symfony/dom-crawler": {
         "version": "v6.0.6"
     },
@@ -287,6 +353,9 @@
     },
     "symfony/service-contracts": {
         "version": "v3.0.1"
+    },
+    "symfony/stopwatch": {
+        "version": "v6.0.19"
     },
     "symfony/string": {
         "version": "v6.0.3"
