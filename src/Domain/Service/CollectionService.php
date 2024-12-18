@@ -3,13 +3,10 @@
 namespace App\Domain\Service;
 
 use App\Domain\Dto\ProductFilterDto;
-use App\Domain\Entity\Collection\FruitCollection;
 use App\Domain\Entity\Collection\ProductCollection;
-use App\Domain\Entity\Collection\VegetableCollection;
 use App\Domain\Entity\Product;
 use App\Domain\Repository\ProductRepositoryInterface;
 use App\Domain\ValueObject\ProductType;
-use InvalidArgumentException;
 
 class CollectionService
 {
@@ -63,6 +60,7 @@ class CollectionService
     public function listItemsFromCollection(ProductType $type): array
     {
         $collection = $this->getCollection($type);
+
         return array_values($collection->list());
     }
 
@@ -76,6 +74,7 @@ class CollectionService
     public function searchItemsInCollection(ProductType $type, ProductFilterDto $filterDto): array
     {
         $collection = $this->getCollection($type);
+
         return $collection->search($filterDto);
     }
 }
