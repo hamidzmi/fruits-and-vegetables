@@ -13,12 +13,10 @@ use InvalidArgumentException;
 
 class CollectionService
 {
-    private ProductRepositoryInterface $repository;
-
-    public function __construct(ProductRepositoryInterface $repository)
-    {
-        $this->repository = $repository;
-    }
+    public function __construct(
+        protected ProductRepositoryInterface $repository,
+        protected ProductCollectionFactory $productCollectionFactory
+    ) {}
 
     /**
      * Retrieve a collection by type.
@@ -29,14 +27,7 @@ class CollectionService
     public function getCollection(ProductType $type): ProductCollection
     {
         $products = $this->repository->findByType($type);
-
-        if ($type->equals(ProductType::fruit)) {
-            $collection = new FruitCollection();
-        } elseif ($type->equals(ProductType::vegetable)) {
-            $collection = new VegetableCollection();
-        } else {
-            throw new InvalidArgumentException("Unknown products type: $type->value");
-        }
+        $collection = $this->productCollectionFactory->make($type);
 
         if (!$products) {
             return $collection;

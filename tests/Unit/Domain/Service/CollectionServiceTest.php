@@ -5,9 +5,11 @@ namespace App\Tests\Unit\Domain\Service;
 use App\Domain\Dto\ProductFilterDto;
 use App\Domain\Entity\Collection\FruitCollection;
 use App\Domain\Entity\Collection\ProductCollection;
+use App\Domain\Entity\Collection\VegetableCollection;
 use App\Domain\Entity\Product;
 use App\Domain\Repository\ProductRepositoryInterface;
 use App\Domain\Service\CollectionService;
+use App\Domain\Service\ProductCollectionFactory;
 use App\Domain\ValueObject\ProductType;
 use App\Domain\ValueObject\Weight;
 use PHPUnit\Framework\TestCase;
@@ -16,11 +18,13 @@ class CollectionServiceTest extends TestCase
 {
     private ProductRepositoryInterface $repository;
     private CollectionService $service;
+    private ProductCollectionFactory $productCollectionFactory;
 
     protected function setUp(): void
     {
         $this->repository = $this->createMock(ProductRepositoryInterface::class);
-        $this->service = new CollectionService($this->repository);
+        $this->productCollectionFactory = $this->createMock(ProductCollectionFactory::class);
+        $this->service = new CollectionService($this->repository, $this->productCollectionFactory);
     }
 
     public function testGetCollectionWithNoProducts(): void
@@ -31,6 +35,11 @@ class CollectionServiceTest extends TestCase
             ->method('findByType')
             ->with($type)
             ->willReturn([]);
+
+        $this->productCollectionFactory->expects($this->once())
+            ->method('make')
+            ->with($type)
+            ->willReturn(new FruitCollection());
 
         $collection = $this->service->getCollection($type);
 
@@ -50,6 +59,11 @@ class CollectionServiceTest extends TestCase
             ->with($type)
             ->willReturn([$product1, $product2]);
 
+        $this->productCollectionFactory->expects($this->once())
+            ->method('make')
+            ->with($type)
+            ->willReturn(new FruitCollection());
+
         $collection = $this->service->getCollection($type);
 
         $this->assertInstanceOf(FruitCollection::class, $collection);
@@ -68,6 +82,11 @@ class CollectionServiceTest extends TestCase
                 $type
             );
 
+        $this->productCollectionFactory->expects($this->once())
+            ->method('make')
+            ->with($type)
+            ->willReturn(new FruitCollection());
+
         $this->service->addItemToCollection($type, $product);
     }
 
@@ -80,6 +99,11 @@ class CollectionServiceTest extends TestCase
             ->method('findByType')
             ->with($type)
             ->willReturn([$product]);
+
+        $this->productCollectionFactory->expects($this->once())
+            ->method('make')
+            ->with($type)
+            ->willReturn(new VegetableCollection());
 
         $items = $this->service->listItemsFromCollection($type);
 
@@ -103,6 +127,11 @@ class CollectionServiceTest extends TestCase
             ->method('findByType')
             ->with($type)
             ->willReturn([$product1, $product2]);
+
+        $this->productCollectionFactory->expects($this->once())
+            ->method('make')
+            ->with($type)
+            ->willReturn(new FruitCollection());
 
         $results = $this->service->searchItemsInCollection($type, $filterDto);
 
